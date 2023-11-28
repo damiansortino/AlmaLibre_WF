@@ -107,6 +107,58 @@ namespace Yamy_Desktop
         {
             try
             {
+                using (baselaymarEntities DB = new baselaymarEntities())
+                {
+                    List<producto> productos = DB.producto.ToList().FindAll(x => x.fechaBaja == null);
+                    List<ProductoDTO> encontrados = new List<ProductoDTO>();
+
+                    if (rb_Codigo.Checked)
+                    {
+                        foreach (producto item in productos)
+                        {
+                            if(item.codigo != null && int.Parse(item.codigo) == int.Parse(txtFiltro.Text.Trim()))
+                            {
+                                encontrados.Add(new ProductoDTO(item));
+                            }
+                        }
+                    }
+                    else if (rb_Marca.Checked)
+                    {
+                        foreach (producto item in productos)
+                        {
+                            if (item.marca!= null && item.marca.ToUpper().Contains(txtFiltro.Text.Trim().ToUpper()))
+                            {
+                                encontrados.Add(new ProductoDTO(item));
+                            }
+                        }
+                    }
+                    else if (rb_Nombre.Checked)
+                    {
+                        foreach (producto item in productos)
+                        {
+                            if (item.nombre != null && item.nombre.ToUpper().Contains(txtFiltro.Text.Trim().ToUpper()))
+                            {
+                                encontrados.Add(new ProductoDTO(item));
+                            }
+                        }
+                    }
+
+                    if (encontrados.Count<1)
+                    {
+                        MessageBox.Show("No se encontraron productos");
+                    }
+                    else
+                    {
+                        dgv.DataSource = null;
+                        dgv.DataSource = encontrados;
+                    }
+                }
+                
+
+                ///desactivar desde aquí
+                /*
+
+
                 if (dgv.Rows.Count < 1 || txtFiltro.TextLength < 1)
                 {
                     MessageBox.Show("Seleccione un listado y luego coloque un filtro de búsqueda para su producto");
@@ -145,6 +197,8 @@ namespace Yamy_Desktop
                     dgv.DataSource = null;
                     dgv.DataSource = productosFiltrados;
                 }
+
+                */
 
             }
             catch (Exception ex)

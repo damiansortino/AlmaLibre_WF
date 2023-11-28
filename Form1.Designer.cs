@@ -207,7 +207,7 @@ namespace Yamy_Desktop
             // 
             this.lbl_PrecioProducto.AutoSize = true;
             this.lbl_PrecioProducto.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_PrecioProducto.ForeColor = System.Drawing.Color.DarkSlateGray;
+            this.lbl_PrecioProducto.ForeColor = System.Drawing.Color.SpringGreen;
             this.lbl_PrecioProducto.Location = new System.Drawing.Point(968, 102);
             this.lbl_PrecioProducto.Name = "lbl_PrecioProducto";
             this.lbl_PrecioProducto.Size = new System.Drawing.Size(66, 55);
